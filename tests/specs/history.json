@@ -1,0 +1,11 @@
+[
+  {
+    "name": "image history has an actionable empty state",
+    "steps": [
+      {
+        "send": { "callback": "history:show" },
+        "expect": [{ "method": "sendMessage", "payload": { "text": "No image history yet — create an image to begin." } }]
+      }
+    ]
+  }
+]

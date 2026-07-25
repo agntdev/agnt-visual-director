@@ -1,20 +1,10 @@
 [
   {
-    "name": "Pin Character",
+    "name": "Pin Character requires explicit consent",
     "steps": [
-      {
-        "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Save character attributes for reuse"
-            }
-          }
-        ],
-        "send": {
-          "callback": "character:pin"
-        }
-      }
+      { "send": { "text": "cinematic portrait of Mina in a blue jacket" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Professional prompt:\ncinematic portrait of Mina in a blue jacket. High-definition image with deliberate composition, coherent lighting, refined detail, and a professional finish." } }] },
+      { "send": { "callback": "character:pin" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Save the character details from your latest prompt for future edits?" } }] },
+      { "send": { "callback": "character:yes" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Character details saved for your future edits." } }] }
     ]
   }
 ]

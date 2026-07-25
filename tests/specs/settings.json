@@ -1,0 +1,9 @@
+[
+  {
+    "name": "storage settings change session-memory duration",
+    "steps": [
+      { "send": { "callback": "settings:show" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Choose how long to keep your image history and session memory. Character details are always saved only with your consent." } }] },
+      { "send": { "callback": "settings:memory:30" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Session memory will be kept for 30 days." } }] }
+    ]
+  }
+]
