@@ -1,19 +1,28 @@
 [
   {
-    "name": "/new",
+    "name": "image generation asks one focused clarification and saves the prompt",
     "steps": [
       {
         "expect": [
           {
             "method": "sendMessage",
-            "payload": {
-              "text": "Start new image generation from text prompt"
-            }
+            "payload": { "text": "Describe the image you want to create. Include the subject, setting, and style if you know them." }
           }
         ],
         "send": {
           "text": "/new"
         }
+      },
+      {
+        "send": { "text": "a fox in snow" },
+        "expect": [{ "method": "sendMessage", "payload": { "text": "What visual style or final format should it have? For example: editorial photo, cinematic poster, or illustration." } }]
+      },
+      {
+        "send": { "text": "cinematic poster at dusk" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Professional prompt:\na fox in snow. cinematic poster at dusk. High-definition image with deliberate composition, coherent lighting, refined detail, and a professional finish." } },
+          { "method": "sendMessage", "payload": { "text": "Image rendering isn’t set up yet. Your prompt is saved and ready once a rendering provider is connected." } }
+        ]
       }
     ]
   }

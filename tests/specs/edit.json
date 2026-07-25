@@ -1,19 +1,39 @@
 [
   {
-    "name": "/edit",
+    "name": "edit flow preserves unchanged attributes",
     "steps": [
       {
         "expect": [
           {
             "method": "sendMessage",
-            "payload": {
-              "text": "Upload image for editing with instructions"
-            }
+            "payload": { "text": "Upload an image, then I’ll ask what you want to change." }
           }
         ],
         "send": {
           "text": "/edit"
         }
+      },
+      {
+        "send": {
+          "update": {
+            "update_id": 22,
+            "message": {
+              "message_id": 22,
+              "date": 0,
+              "chat": { "id": 1, "type": "private", "first_name": "Test" },
+              "from": { "id": 1, "is_bot": false, "first_name": "Test" },
+              "photo": [{ "file_id": "photo-file", "file_unique_id": "photo-unique", "width": 100, "height": 100, "file_size": 1000 }]
+            }
+          }
+        },
+        "expect": [{ "method": "sendMessage", "payload": { "text": "Image received. What should change? I’ll preserve everything else." } }]
+      },
+      {
+        "send": { "text": "Change the sky to sunset" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Edit direction:\nChange the sky to sunset. Preserve the source image's composition, subject identity, lighting, and unchanged details. High-definition professional finish." } },
+          { "method": "sendMessage", "payload": { "text": "Image rendering isn’t set up yet. I’ve kept your edit direction and source image ready." } }
+        ]
       }
     ]
   }

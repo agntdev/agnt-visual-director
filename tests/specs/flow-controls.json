@@ -1,0 +1,9 @@
+[
+  {
+    "name": "cancel clears an active image request",
+    "steps": [
+      { "send": { "text": "/new" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Describe the image you want to create. Include the subject, setting, and style if you know them." } }] },
+      { "send": { "text": "/cancel" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Your image request was cancelled. Use /start when you’re ready." } }] }
+    ]
+  }
+]

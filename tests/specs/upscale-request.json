@@ -1,14 +1,12 @@
 [
   {
-    "name": "Upscale to 4K",
+    "name": "Upscale to 4K explains when no image is available",
     "steps": [
       {
         "expect": [
           {
             "method": "sendMessage",
-            "payload": {
-              "text": "Request 4K resolution for last generated image"
-            }
+            "payload": { "text": "There’s no generated image to upscale yet. Create an image first." }
           }
         ],
         "send": {
